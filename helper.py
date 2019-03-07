@@ -42,28 +42,36 @@ def make_guide_lines(s):
     return guide_lines
 
 
-def make_scatter_chart(size, opacity, X, Y, color="darkblue", domain=None, range_=None):
+def make_scatter_chart(X, Y,
+                       opacity=.2,
+                       size=100,
+                       color="darkblue",
+                       domain=None):
     data = make_altair_object(X, Y)
 
     if domain is None:
         altx = 'x:Q'
     else:
         min_, max_ = domain
-        altx = alt.X('x:Q', scale=alt.Scale(domain=(min_, max_), clip=True))
+        altx = alt.X('x:Q', scale=alt.Scale(domain=(min_, max_)))
 
-    if range_ is None:
-        alty = 'y:Q'
-    else:
-        min_, max_ = range_
-        alty = alt.Y('y:Q', scale=alt.Scale(range=(min_, max_), clip=True))
+    alty = 'y:Q'
 
-    return alt.Chart(data).mark_point(size=10, opacity=.2, color=color, clip=True).encode(
+    return alt.Chart(data).mark_point(size=size,
+                                      opacity=opacity,
+                                      color=color,
+                                      filled=True,
+                                      clip=True).encode(
         x=altx,  # specify ordinal data
         y=alty,  # specify quantitative data
     )
 
 
-def make_scatter_chart_with_labels(X, Y, L, color="blue", domain=None, range_=None):
+def make_scatter_chart_with_labels(X, Y, L,
+                                   color="blue",
+                                   size=200,
+                                   opacity=.1,
+                                   domain=None):
 
     dt = make_altair_object_labels(X, Y, L)
 
@@ -71,16 +79,12 @@ def make_scatter_chart_with_labels(X, Y, L, color="blue", domain=None, range_=No
         altx = 'x:Q'
     else:
         min_, max_ = domain
-        altx = alt.X('x:Q', scale=alt.Scale(domain=(min_, max_), clip=True))
+        altx = alt.X('x:Q', scale=alt.Scale(domain=(min_, max_)))
 
-    if range_ is None:
-        alty = 'y:Q'
-    else:
-        min_, max_ = range_
-        alty = alt.Y('y:Q', scale=alt.Scale(range=(min_, max_), clip=True))
+    alty = 'y:Q'
 
-    expected_x = alt.Chart(dt).mark_point(opacity=expectation_opacity,
-                                          size=expectation_size,
+    expected_x = alt.Chart(dt).mark_point(opacity=opacity,
+                                          size=size,
                                           color=color,
                                           clip=True,
                                           filled=True).encode(
@@ -92,8 +96,12 @@ def make_scatter_chart_with_labels(X, Y, L, color="blue", domain=None, range_=No
         align='left',
         baseline='bottom',
         yOffset=-4,
-        xOffset=-20,
-        dx=16
+        xOffset=-2,
+        fill="white",
+        opacity=1,
+        fillOpacity=1,
+        dx=16,
+        stroke="black"
     ).encode(
         text='label:N'
     )
