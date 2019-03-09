@@ -41,8 +41,6 @@ svg {
  <script src="https://cdnjs.cloudflare.com/ajax/libs/react/15.4.2/react-dom.js"></script>
  <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/6.26.0/babel.min.js"></script>
 
-<div id="headrow" style="height:39px">
-</div>
 
 <div class="container center-block">
   <div id="headrow3"  class="center-block">
@@ -54,7 +52,7 @@ svg {
   <div class="col-md-12 bs-linebreak">
   </div>
 </div>
-
+<br>
 <div id="headrow4"  class="center-block">
   <p>
    Drag the red dot to examine different values of precision $P$ and recall $R$, and observe the change in $F_1$. The graph to the right shows the values $\frac{1}{P}$ and $\frac{1}{R}$ as small dots, along with the average of these reciprocals $M$ as a big blue dot. $F_1$ is $\frac{1}{M}$, i.e. 1 divided by the average height of the small blue dots.
@@ -68,7 +66,7 @@ svg {
        <div class="row">
          <div class="col-md-1">
            <svg style="width: 45px;height: 300px;">
-                <text x="120" y="0" ill="black" fontFamily="Verdana" font-size="10" transform="rotate(90 10,25)">Precision</text>
+                <text x="120" y="10" ill="black" fontFamily="Verdana" font-size="10" transform="rotate(90 10,25)">Precision</text>
             </svg>
          </div>
          <div class="col-md-11">
@@ -101,13 +99,13 @@ class InteractiveF1 extends React.Component {
              stroke="black"
             fill="red"/>
 
-      <rect  x="1" y={this.props.tent_3} width='3' height='1'/>
-      <rect  x="1" y={this.props.tent} width='3' height='1'/>
-      <rect  x="1" y={this.props.fif} width='3' height='1'/>
+      <rect  x="1" y={this.props.tent_3} width='5' height='1'/>
+      <rect  x="1" y={this.props.tent} width='5' height='1'/>
+      <rect  x="1" y={this.props.fif} width='5' height='1'/>
 
-      <rect  y="292" x={this.props.tent_3} width='1' height='3'/>
-      <rect  y="292" x={this.props.tent}  width='1' height='3'/>
-      <rect  y="292" x={this.props.fif}  width='1' height='3'/>
+      <rect  y="292" x={this.props.tent_3} width='1' height='7'/>
+      <rect  y="292" x={this.props.tent}  width='1' height='7'/>
+      <rect  y="292" x={this.props.fif}  width='1' height='7'/>
 
 
     </svg>
@@ -251,11 +249,7 @@ class Application extends React.Component {
                            _onMouseDown={this._onMouseDown.bind(this)}
                            _onMouseUp={this._onMouseUp.bind(this)}/>
 
-            <svg style={{width:100, height:20}}>
-                <text x="145" y="9"fontFamily="Verdana" fontSize="10">Recall</text>
-            </svg>
-
-
+             <label style={{fontSize:"10", width:300, height:5, fontFamily:"Verdana"}}>Recall{"\n"}</label>
 
               <label>
               Recall:
